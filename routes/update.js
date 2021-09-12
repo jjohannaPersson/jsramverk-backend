@@ -3,7 +3,7 @@ var router = express.Router();
 const ObjectId = require('mongodb').ObjectId;
 const database = require("../db/database");
 
-router.put('/:id', async (req, res) => {
+router.put('/update/:id', async (req, res) => {
     const db = await database.getDb();
     const filter = { _id: ObjectId(req.params.id) };
     const updateDocument = {

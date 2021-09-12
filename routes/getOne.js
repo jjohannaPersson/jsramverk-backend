@@ -3,7 +3,7 @@ const ObjectId = require('mongodb').ObjectId;
 var router = express.Router();
 const database = require("../db/database");
 
-router.get('/:id', async (req, res) => {
+router.get('/update/:id', async (req, res) => {
     let objectID;
 
     try {
