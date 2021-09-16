@@ -1,6 +1,16 @@
 const mongo = require("mongodb").MongoClient;
-const config = require("./config.json");
 const collectionName = "doc";
+
+let config;
+
+try {
+    config = require("./config.json");
+} catch (error) {
+    console.error(error);
+}
+
+const username = process.env.USERNAME || config.username;
+const password = process.env.PASSWORD || config.password;
 
 const database = {
     getDb: async function getDb () {
