@@ -1,3 +1,5 @@
+[![Build Status](https://app.travis-ci.com/jjohannaPersson/jsramverk-backend.svg?branch=main)](https://app.travis-ci.com/jjohannaPersson/jsramverk-backend)
+
 ## Installation
 
 1. Ladda ner github-repot
