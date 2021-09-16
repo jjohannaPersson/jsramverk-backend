@@ -1,14 +1,19 @@
+/* globals resolve */
+
 const database = require("../db/database.js");
+
+// import {resolve} from '@jest/globals';
 
 const setupDb = {
     createNew: async function() {
         const db = await database.getDb();
+
         db.collection.insertOne(
             {
-                "name" : "test",
-                "html" : "test-html",
+                "name": "test",
+                "html": "test-html",
             }
-         )
+        );
         let res = await db.collection.find({"name": "test"} ).toArray();
         let result = {};
 
@@ -17,11 +22,6 @@ const setupDb = {
 
         return result;
     },
-    find: async function(title) {
-       const db = await database.getDb();
-       let res = await db.collection.find({"html": `${name}`} ).toArray();
-       return res;
-   },
     befores: async function() {
         const db = await database.getDb();
 
@@ -42,7 +42,7 @@ const setupDb = {
                 resolve();
             });
     }
-}
+};
 
 
 module.exports = setupDb;

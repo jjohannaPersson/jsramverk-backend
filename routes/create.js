@@ -11,10 +11,10 @@ router.post('/create', async (req, res) => {
 
     const result = await db.collection.insertOne(doc);
 
-        await db.client.close();
+    await db.client.close();
 
-        res.status(201).json(result);
-        return result;
+    res.status(201).json(result);
+    return result;
 });
 
 module.exports = router;

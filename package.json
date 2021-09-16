@@ -6,7 +6,8 @@
   "scripts": {
     "test": "nyc --reporter=html --reporter=text --reporter=clover mocha --timeout 10000 --exit",
     "start": "node app.js",
-    "production": "SET NODE_ENV='production' & node app.js"
+    "production": "SET NODE_ENV='production' & node app.js",
+    "eslint": "eslint ."
   },
   "author": "",
   "license": "ISC",
@@ -17,8 +18,12 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "@types/mocha": "^9.0.0",
     "chai": "^4.3.4",
     "chai-http": "^4.3.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-react": "^7.25.1",
+    "javascript-style-guide": "^1.0.1",
     "mocha": "^9.1.1",
     "nodemon": "^2.0.12",
     "nyc": "^15.1.0"

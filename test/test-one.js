@@ -1,3 +1,5 @@
+/* globals before */
+
 process.env.NODE_ENV = 'test';
 
 const chai = require('chai');
@@ -8,6 +10,8 @@ const database = require("./setup-db.js");
 chai.should();
 
 chai.use(chaiHttp);
+
+let result = null;
 
 describe('Documents', () => {
     before('connect', async function() {

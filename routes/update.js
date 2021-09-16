@@ -8,8 +8,8 @@ router.put('/update/:id', async (req, res) => {
     const filter = { _id: ObjectId(req.params.id) };
     const updateDocument = {
         $set: {
-        name: req.body.name,
-        html: req.body.html,
+            name: req.body.name,
+            html: req.body.html,
         }
     };
 

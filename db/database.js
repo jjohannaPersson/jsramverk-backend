@@ -13,9 +13,9 @@ const username = process.env.USERNAME || config.username;
 const password = process.env.PASSWORD || config.password;
 
 const database = {
-    getDb: async function getDb () {
-        let dsn = `mongodb+srv://${username}:${password}@cluster0.drwbg.mongodb.net/documents?retryWrites=true&w=majority`;
-        // let dsn = `mongodb://localhost:27017/documents`;
+    getDb: async function getDb() {
+        let dsn = `mongodb+srv://${username}:${password}
+@cluster0.drwbg.mongodb.net/documents?retryWrites=true&w=majority`;
 
         if (process.env.NODE_ENV === 'test') {
             dsn = "mongodb://localhost:27017/test";

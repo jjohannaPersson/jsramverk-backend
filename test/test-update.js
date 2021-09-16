@@ -1,9 +1,13 @@
+/* globals before */
+
 process.env.NODE_ENV = 'test';
 
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const server = require('../app.js');
 const database = require("./setup-db.js");
+
+let result = null;
 
 chai.should();
 
@@ -19,7 +23,8 @@ describe('Documents', () => {
         it('Should update a document', (done) => {
             let updateDoc = {
                 name: "Test uppdatera"
-            }
+            };
+
             chai.request(server)
                 .put(`/update/${result.id}`)
                 .send(updateDoc)

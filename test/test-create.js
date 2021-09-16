@@ -1,3 +1,5 @@
+/* globals before */
+
 process.env.NODE_ENV = 'test';
 
 const chai = require('chai');
@@ -19,7 +21,8 @@ describe('Documents', () => {
             let createDoc = {
                 name: "Test ny",
                 html: "Test ny html"
-            }
+            };
+
             chai.request(server)
                 .post(`/create`)
                 .send(createDoc)
