@@ -3,3 +3,4 @@ db/config.json
 src/
 routes/hello.js
 routes/index.js
+/coverage
