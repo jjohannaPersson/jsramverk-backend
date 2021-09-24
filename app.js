@@ -7,10 +7,30 @@ const getAll = require('./routes/get');
 const getOne = require('./routes/getOne');
 const createDoc = require('./routes/create');
 const updateDoc = require('./routes/update');
+const httpServer = require("http").createServer(app);
 
 const port = process.env.PORT || 1337;
 
 app.use(cors());
+
+const io = require("socket.io")(httpServer, {
+  cors: {
+    origin: "https://www.student.bth.se",
+    methods: ["GET", "POST"]
+  }
+});
+
+io.sockets.on('connection', function(socket) {
+    socket.on('create', function(room) {
+        socket.join(room);
+    });
+
+    socket.on("doc", function (data) {
+        const room = Array.from(socket.rooms)[1];
+
+        socket.to(room).emit("doc", data);
+    });
+});
 
 // don't show the log when it is test
 if (process.env.NODE_ENV !== 'test') {
@@ -62,6 +82,6 @@ app.use((err, req, res, next) => {
 });
 
 // Start up server
-const server = app.listen(port, () => console.log(`Example API listening on port ${port}!`));
+const server = httpServer.listen(port, () => console.log(`Example API listening on port ${port}!`));
 
 module.exports = server;
