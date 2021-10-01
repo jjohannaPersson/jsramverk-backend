@@ -7,6 +7,7 @@ const getAll = require('./routes/get');
 const getOne = require('./routes/getOne');
 const createDoc = require('./routes/create');
 const updateDoc = require('./routes/update');
+const auth = require("./routes/auth");
 const httpServer = require("http").createServer(app);
 
 const port = process.env.PORT || 1337;
@@ -26,9 +27,7 @@ io.sockets.on('connection', function(socket) {
     });
 
     socket.on("doc", function (data) {
-        const room = Array.from(socket.rooms)[1];
-
-        socket.to(room).emit("doc", data);
+        socket.to(data["_id"]).emit("doc", data);
     });
 });
 
@@ -53,6 +52,7 @@ app.use('/', getAll);
 app.use('/', getOne);
 app.use('/', createDoc);
 app.use('/', updateDoc);
+app.use('/', auth);
 
 
 // Add routes for 404 and error handling

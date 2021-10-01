@@ -13,19 +13,41 @@ router.put('/update/:id', async (req, res) => {
         }
     };
 
-    const result = await db.collection.updateOne(
-        filter,
-        updateDocument,
-    );
+    let access = {
+        $push: {
+            allowed_users: req.body.allowed_users
+        }
+    };
 
-    await db.client.close();
+    if (req.body.allowed_users) {
+        const result = await db.collection.updateOne(
+            filter,
+            access,
+        );
+        await db.client.close();
 
-    if (result.matchedCount !== 1) {
-        res.status(400).send();
-        return;
+        if (result.matchedCount !== 1) {
+            res.status(400).send();
+            return;
+        }
+
+        res.status(201).json(result);
     }
 
-    res.status(201).json(result);
+    if (req.body.name && req.body.html) {
+        const result = await db.collection.updateOne(
+            filter,
+            updateDocument,
+        );
+        await db.client.close();
+
+        if (result.matchedCount !== 1) {
+            res.status(400).send();
+            return;
+        }
+
+        res.status(201).json(result);
+    }
 });
 
 module.exports = router;

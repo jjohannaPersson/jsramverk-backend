@@ -1,6 +1,9 @@
 node_modules/
 db/config.json
-src/
+src/search.js
+src/server.js
+src/setup.js
+src/setup.json
 routes/hello.js
 routes/index.js
 /coverage

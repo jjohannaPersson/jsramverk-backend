@@ -1,5 +1,6 @@
 const mongo = require("mongodb").MongoClient;
 const collectionName = "doc";
+const collectionNameUsers = "users";
 
 let config;
 
@@ -14,7 +15,9 @@ const password = process.env.PASSWORD || config.password;
 
 const database = {
     getDb: async function getDb() {
-        let dsn = `mongodb+srv://${username}:${password}
+        console.log(password);
+        console.log(username);
+        let dsn = `mongodb+srv://texteditor:${password}
 @cluster0.drwbg.mongodb.net/documents?retryWrites=true&w=majority`;
         // let dsn = `mongodb://localhost:27017/documents`;
 
@@ -28,10 +31,12 @@ const database = {
         });
         const db = await client.db();
         const collection = await db.collection(collectionName);
+        const collectionUsers = await db.collection(collectionNameUsers);
 
         return {
             db: db,
             collection: collection,
+            collectionUsers: collectionUsers,
             client: client,
         };
     }
