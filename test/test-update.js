@@ -22,7 +22,8 @@ describe('Documents', () => {
     describe('PUT /update/:id', () => {
         it('Should update a document', (done) => {
             let updateDoc = {
-                name: "Test uppdatera"
+                name: "Test uppdatera",
+                html: "Uppdaterad html"
             };
 
             chai.request(server)
