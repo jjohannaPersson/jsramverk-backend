@@ -11,7 +11,7 @@ const auth = require("./routes/auth");
 const httpServer = require("http").createServer(app);
 
 //graphql
-const visual = true;
+const visual = false;
 const { graphqlHTTP } = require('express-graphql');
 const {
   GraphQLSchema
