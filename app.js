@@ -10,6 +10,14 @@ const updateDoc = require('./routes/update');
 const auth = require("./routes/auth");
 const httpServer = require("http").createServer(app);
 
+//graphql
+const visual = true;
+const { graphqlHTTP } = require('express-graphql');
+const {
+  GraphQLSchema
+} = require("graphql");
+const RootQueryType = require("./graphql/root.js");
+
 const port = process.env.PORT || 1337;
 
 app.use(cors());
@@ -37,6 +45,10 @@ if (process.env.NODE_ENV !== 'test') {
     app.use(morgan('combined')); // 'combined' outputs the Apache style LOGs
 }
 
+const schema = new GraphQLSchema({
+    query: RootQueryType
+});
+
 // This is middleware called for all routes.
 // Middleware takes three parameters.
 app.use((req, res, next) => {
@@ -53,6 +65,11 @@ app.use('/', getOne);
 app.use('/', createDoc);
 app.use('/', updateDoc);
 app.use('/', auth);
+
+app.use('/graphql', graphqlHTTP({
+    schema: schema,
+    graphiql: visual,
+}));
 
 
 // Add routes for 404 and error handling

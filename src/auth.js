@@ -193,6 +193,21 @@ const auth = {
                 }
             });
         }
+    },
+    getAllUsers: async function (
+        res=undefined,
+        req=undefined
+    ) {
+        const db = await database.getDb();
+        const resultSet = await db.collectionUsers.find({}).toArray();
+
+        if (res === undefined) {
+                return resultSet;
+            }
+
+        await db.client.close();
+
+        res.json(resultSet);
     }
 };
 

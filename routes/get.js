@@ -1,14 +1,8 @@
 var express = require('express');
 var router = express.Router();
 const database = require("../db/database");
+const getAll = require("../src/get.js");
 
-router.get('/', async (req, res) => {
-    const db = await database.getDb();
-    const resultSet = await db.collection.find({}).toArray();
-
-    await db.client.close();
-
-    res.json(resultSet);
-});
+router.get('/', (req, res) => getAll.getAllDocs(res, req));
 
 module.exports = router;
