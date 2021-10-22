@@ -8,6 +8,7 @@ const getOne = require('./routes/getOne');
 const createDoc = require('./routes/create');
 const updateDoc = require('./routes/update');
 const auth = require("./routes/auth");
+const mail = require("./routes/mail");
 const httpServer = require("http").createServer(app);
 
 //graphql
@@ -24,7 +25,7 @@ app.use(cors());
 
 const io = require("socket.io")(httpServer, {
   cors: {
-    origin: "https://www.student.bth.se",
+    origin: "http://localhost:3000",
     methods: ["GET", "POST"]
   }
 });
@@ -65,6 +66,7 @@ app.use('/', getOne);
 app.use('/', createDoc);
 app.use('/', updateDoc);
 app.use('/', auth);
+app.use('/', mail);
 
 app.use('/graphql', graphqlHTTP({
     schema: schema,
