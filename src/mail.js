@@ -20,7 +20,7 @@ const mail = {
           from: 'jjohanna.persson@live.se',
           subject: 'Du har fått en inbjudan om att redigera i ett dokument!',
           text: 'Klicka på länken nedan för att registrera dig',
-          html: `Klicka på länken nedan för att registrera dig: <br><br> <a href="https://www.student.bth.se/~jopn20/editor/#/signup">Registera dig här!</a>`,
+          html: `Klicka på länken nedan för att registrera dig: <br><br> <a href="https://www.student.bth.se/~jopn20/editor/#">Registrera dig här!</a>`,
         };
         sgMail
           .send(msg)
